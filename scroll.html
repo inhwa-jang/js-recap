@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>window_size</title>
+  <style type="text/css">
+    div {
+      display: block;
+      background-color: pink;
+      width: 200px;
+      height: 200px;
+      margin-bottom: 8px;
+      text-align: center;
+      border-radius: 2px;
+    }
+
+    span {
+      position: relative;
+      top: 95px;
+    }
+
+    .special-box {
+      background-color: yellow;
+      cursor: pointer;
+    }
+
+    aside {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div><span>1</span></div>
+  <div><span>2</span></div>
+  <div><span>3</span></div>
+  <div><span>4</span></div>
+  <div><span>5</span></div>
+  <div><span>6</span></div>
+  <div><span>7</span></div>
+  <div><span>8</span></div>
+  <div class="special-box"><span>special</span></div>
+  <div><span>9</span></div>
+  <div><span>10</span></div>
+  <div><span>11</span></div>
+
+  <aside class="btns">
+    <button class="scroll-by">scroll by 100px</button>
+    <button class="scroll-to">scroll to 100px</button>
+    <button class="scroll-into">scroll into special-box</button>
+  </aside>
+  <script>
+    const specialBox = document.querySelector(".special-box");
+    specialBox.addEventListener('click', (e) => {
+      const rect = specialBox.getBoundingClientRect();
+      console.log(rect);
+      console.log(`client x: ${e.clientX} client y :${e.clientY}`);
+      console.log(`page x: ${e.pageX} page y : ${e.pageY}`);
+    });
+
+    const scrollBy = document.querySelector(".scroll-by"),
+      scrollTo = document.querySelector(".scroll-to"),
+      scrollInTo = document.querySelector(".scroll-into");
+
+    scrollBy.addEventListener("click", () => {
+      window.scrollBy(0, 100);
+    });
+
+    scrollTo.addEventListener("click", () => {
+      window.scrollTo(0, 100);
+    })
+
+    scrollInTo.addEventListener("click", () => {
+      specialBox.scrollIntoView({block: "start"});
+    })
+  </script>
+</body>
+
+</html>
